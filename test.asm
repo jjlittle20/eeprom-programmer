@@ -1,0 +1,7 @@
+VDLINE  EQU 021BH
+BEGIN   ORG 5200H
+        LD HL, MESSAGE
+        JP VDLINE
+MESSAGE DB "Hello World!"
+        
+        END BEGIN

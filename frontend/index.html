@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Eel Example</title>
+    <style>
+      h1 {
+        color: green;
+        text-align: center;
+      }
+
+      .button_container {
+        display: block;
+        margin: 0 auto;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>EEPROM PROGRAMMER</h1>
+    <div class="button_container">
+      <button id="write_command">WRITE</button>
+      <button id="erase_command">ERASE</button>
+      <button id="read_command">READ</button>
+    </div>
+    <h1>HEX</h1>
+    <div id="hex_container"></div>
+    <h1>DEC</h1>
+    <div id="dec_container"></div>
+    <h1>READ HEX</h1>
+    <div id="read_hex_container"></div>
+
+    <script type="text/javascript" src="../eel.js"></script>
+    <script src="./script.js"></script>
+  </body>
+</html>

@@ -1,4 +1,7 @@
+//write
 document.getElementById("write_command").onclick = function () {
+  document.getElementById("message_container").innerHTML =
+    "Writing...Please Wait";
   eel.getCommand("write")(function (returned_values) {
     const JSONValues = JSON.parse(returned_values);
     //hex
@@ -29,8 +32,13 @@ document.getElementById("write_command").onclick = function () {
     });
     document.getElementById("dec_container").appendChild(decTable);
   });
+  document.getElementById("message_container").innerHTML = "Write Complete";
 };
+//read
+
 document.getElementById("read_command").onclick = function () {
+  document.getElementById("message_container").innerHTML =
+    "Reading...Please Wait";
   eel.getCommand("read")(function (returned_values) {
     const JSONValues = JSON.parse(returned_values);
     const perrow = 1;
@@ -46,5 +54,16 @@ document.getElementById("read_command").onclick = function () {
       }
     });
     document.getElementById("read_hex_container").appendChild(hexTable);
+    document.getElementById("message_container").innerHTML = "Read Complete";
+  });
+};
+//erase
+document.getElementById("erase_command").onclick = function () {
+  document.getElementById("message_container").innerHTML =
+    "Erasing...Please Wait";
+  eel.getCommand("erase")(function (returned_values) {
+    const JSONValues = JSON.parse(returned_values);
+    document.getElementById("message_container").innerHTML =
+      JSONValues?.message;
   });
 };

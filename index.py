@@ -3,56 +3,88 @@ import serial
 import time
 import eel
 import json
-from random import randint
+from pySerialTransfer import pySerialTransfer as txfer
   
 eel.init("frontend")  
   
 
-arduino = serial.Serial(port='COM11', baudrate=115200, timeout=.1)
+arduino = serial.Serial(port='COM6', baudrate=115200, timeout=.1)
+
 
 file = open("./test.bin","rb")
 
 hexData = file.read().hex()
-print(hexData)
+
 file.close()
 
-hexList =list( map(''.join, zip(*[iter(hexData)]*2)))
+hexStringList =list(map(''.join, zip(*[iter(hexData)]*2)))
+print(hexStringList)
+
+decList = []
+# decList.append(int(len(hexStringList)))
+for hex_value in hexStringList:
+            int_value = int(hex_value, base=16)
+            decList.append(int_value)
+
 time.sleep(2)
 
 @eel.expose  
 def getCommand(command):
-   
+                         
+        
     if(command == "write" or command =="w"):
-        dec_array=[]
+    
         arduino.write(bytes("C-WRITE", 'utf-8'))
+        
+        while arduino.inWaiting() == 0:
+                time.sleep(0.01)
+        returned_data = arduino.readline()
+        
+        arduino.write(bytearray([18]))
+        arduino.write(bytearray(decList))
+        while arduino.inWaiting() == 0:
+            time.sleep(0.01)
+        
+        isWriting = True
+        while isWriting == True:      
+            time.sleep(0.01)
+            returned_data = arduino.readline().decode('utf-8')
+            
+            if(returned_data == "WRITE-END"):
+                
+                
+                returned_values = {
+                    "dec":decList,
+                    "hex":hexStringList
+                    
+                }
+                isWriting == False
+                return json.dumps(returned_values) 
+            
+       
+    
+                
+    elif(command == "erase" or command =="e"):
+        arduino.write(bytes("C-ERASE", 'utf-8'))
+        print("command")
         while arduino.inWaiting() == 0:
                 time.sleep(0.01)
         returned_data = arduino.readline()
         print(returned_data)
-        for hex_value in hexList:
-            int_value = str(int(hex_value, base=16))
-            arduino.write(bytes(int_value, 'utf-8'))
-            while arduino.inWaiting() == 0:
-                time.sleep(0.01)
+        isErasing = True
+        while isErasing ==True:
             time.sleep(0.01)
-            returned_data = arduino.readline()
-            print("HEX -- ",hex_value)
-            print("DEC -- ",returned_data)
-            if(returned_data != ""):
-                dec_array.append(returned_data.decode('utf-8'))
-        print(dec_array)
-        print(hexList)  
-        returned_values ={
-            "dec":dec_array,
-            "hex":hexList
-            
-        }
-        dec_array =[]
-        return json.dumps(returned_values)               
-    elif(command == "erase" or command =="e"):
-        arduino.write(bytes("C-ERASE", 'utf-8'))
-        time.sleep(1)
-        
+            returned_data = arduino.readline().decode('utf-8')
+            print(returned_data)
+            if(returned_data == "ERASE-DONE"):
+                isErasing = False
+                returned_values = {"message":"Erase completed sucessfully"}
+                print("done")
+                return json.dumps(returned_values)
+          
+          
+          
+                    
     elif(command == "read" or command =="r"):
         hex_array=[]
         failedReads = 0
@@ -63,19 +95,21 @@ def getCommand(command):
         while isReading == True:
             time.sleep(0.01)
             returned_data = arduino.readline().decode('utf-8')
+            print(returned_data)
+           
             if(failedReads > 5):
+                
                 isReading =False
                 return json.dumps({"error":"READ FAILED"})
-            if(returned_data ==""):
+            if(returned_data ==" "):
                 failedReads+1
             if(returned_data == "READ-DONE"):
                 isReading = False
                 
             hex_array.append(returned_data)
-            print('ret-----',returned_data)
-            
+    
         returned_values = {"hex":hex_array}   
-        print(returned_values)
+       
         return json.dumps(returned_values)    
      
 

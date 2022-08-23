@@ -19,9 +19,9 @@ file.close()
 
 hexStringList =list(map(''.join, zip(*[iter(hexData)]*2)))
 print(hexStringList)
-
 decList = []
-# decList.append(int(len(hexStringList)))
+writeLength=[]
+writeLength.append(int(len(hexStringList)))
 for hex_value in hexStringList:
             int_value = int(hex_value, base=16)
             decList.append(int_value)
@@ -40,7 +40,7 @@ def getCommand(command):
                 time.sleep(0.01)
         returned_data = arduino.readline()
         
-        arduino.write(bytearray([18]))
+        arduino.write(bytearray(writeLength))
         arduino.write(bytearray(decList))
         while arduino.inWaiting() == 0:
             time.sleep(0.01)

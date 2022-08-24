@@ -8,10 +8,10 @@ from pySerialTransfer import pySerialTransfer as txfer
 eel.init("frontend")  
   
 
-arduino = serial.Serial(port='COM6', baudrate=115200, timeout=.1)
+arduino = serial.Serial(port='COM11', baudrate=115200, timeout=.1)
 
 
-file = open("./test.bin","rb")
+file = open("./test files/test.bin","rb")
 
 hexData = file.read().hex()
 
@@ -100,11 +100,12 @@ def getCommand(command):
             if(failedReads > 5):
                 
                 isReading =False
-                return json.dumps({"error":"READ FAILED"})
+                return json.dumps({"message":"READ FAILED"})
             if(returned_data ==" "):
                 failedReads+1
             if(returned_data == "READ-DONE"):
                 isReading = False
+            
                 
             hex_array.append(returned_data)
     

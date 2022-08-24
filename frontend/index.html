@@ -5,36 +5,84 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>EEPROM PROGRAMMER</title>
-
-    <style>
-      h1 {
-        color: green;
-        text-align: center;
-      }
-
-      .button_container {
-        display: block;
-        margin: 0 auto;
-      }
-    </style>
+    <link rel="stylesheet" href="styles.css" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx"
+      crossorigin="anonymous"
+    />
+    <script defer type="text/javascript" src="../eel.js"></script>
+    <script defer src="./script.js"></script>
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
+      crossorigin="anonymous"
+    ></script>
   </head>
   <body>
-    <h1>EEPROM PROGRAMMER</h1>
-    <h1>MESSAGE</h1>
-    <div id="message_container"></div>
-    <div class="button_container">
-      <button id="write_command">WRITE</button>
-      <button id="erase_command">ERASE</button>
-      <button id="read_command">READ</button>
-    </div>
-    <h1>WRITE HEX</h1>
-    <div id="hex_container"></div>
-    <h1>WRITE DEC</h1>
-    <div id="dec_container"></div>
-    <h1>READ HEX</h1>
-    <div id="read_hex_container"></div>
+    <nav class="navbar navbar-light bg-light">
+      <div class="container-fluid justify-content-between align-content-center">
+        <div class="flex"><h3>EEPROM PROGRAMMER</h3></div>
 
-    <script type="text/javascript" src="../eel.js"></script>
-    <script src="./script.js"></script>
+        <div class="flex gap-3">
+          <button id="write_command" type="button" class="btn btn-success">
+            WRITE
+          </button>
+
+          <button id="erase_command" type="button" class="btn btn-danger">
+            ERASE
+          </button>
+          <button id="read_command" type="button" class="btn btn-primary">
+            READ
+          </button>
+          <a
+            class="btn btn-secondary"
+            data-bs-toggle="collapse"
+            href="#collapseSettings"
+            role="button"
+            aria-expanded="false"
+            aria-controls="collapseSettings"
+          >
+            SETTINGS
+          </a>
+        </div>
+      </div>
+    </nav>
+
+    <div class="collapse p-6" id="collapseSettings">
+      <div class="card card-body m-4">
+        <h6 class="mb-2">SETTINGS</h6>
+        <div class="form-floating">
+          <input
+            type="text"
+            class="form-control"
+            id="floatingInput"
+            placeholder="16"
+          />
+          <label for="floatingInput">Com Port</label>
+        </div>
+      </div>
+    </div>
+
+    <div id="message_container" class="card card-body m-4">
+      EEPROM programmer based on Ben Eater's design given a user friendly UI by
+      James Little.
+    </div>
+    <div>
+      <div class="m-3">
+        <h6 class="">WRITE HEX</h6>
+        <div class="" id="hex_container"></div>
+      </div>
+      <div class="m-3">
+        <h6>WRITE DEC</h6>
+        <div id="dec_container"></div>
+      </div>
+      <div class="m-3">
+        <h6>READ HEX</h6>
+        <div id="read_hex_container"></div>
+      </div>
+    </div>
   </body>
 </html>

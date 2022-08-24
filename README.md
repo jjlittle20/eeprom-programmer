@@ -93,11 +93,7 @@ To convert files from assembly to a .bin file for your cpu you will need a packa
 
 If you dont have an assembler we will use sjasmplus for the z80.
 
-- download latest release at
-
-  ```https://github.com/z00m128/sjasmplus/releases
-
-  ```
+- download latest release at https://github.com/z00m128/sjasmplus/releases
 
 Next you will need to unzip the file - somewhere permanent - and add the PATH i.e `/user/documents/sjasmplus` to the path environment variable in Windows System Properties. Make sure to edit the system variables and not the user variables.
 
@@ -174,11 +170,11 @@ Don't forget to give the project a star! Thanks again!
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
 
-[contributors-shield]: https://img.shields.io/github/contributors/github_username/repo_name.svg?style=for-the-badge
-[contributors-url]: https://github.com/github_username/repo_name/graphs/contributors
-[forks-shield]: https://img.shields.io/github/forks/github_username/repo_name.svg?style=for-the-badge
-[forks-url]: https://github.com/github_username/repo_name/network/members
-[stars-shield]: https://img.shields.io/github/stars/github_username/repo_name.svg?style=for-the-badge
-[stars-url]: https://github.com/github_username/repo_name/stargazers
-[issues-shield]: https://img.shields.io/github/issues/github_username/repo_name.svg?style=for-the-badge
-[issues-url]: https://github.com/github_username/repo_name/issues
+[contributors-shield]: https://img.shields.io/github/contributors/jjlittle20/eeprom-programmer.svg?style=for-the-badge
+[contributors-url]: https://github.com/jjlittle20/eeprom-programmer/graphs/contributors
+[forks-shield]: https://img.shields.io/github/forks/jjlittle20/eeprom-programmer.svg?style=for-the-badge
+[forks-url]: https://github.com/jjlittle20/eeprom-programmer/network/members
+[stars-shield]: https://img.shields.io/github/stars/jjlittle20/eeprom-programmer.svg?style=for-the-badge
+[stars-url]: https://github.com/jjlittle20/eeprom-programmer/stargazers
+[issues-shield]: https://img.shields.io/github/issues/jjlittle20/eeprom-programmer.svg?style=for-the-badge
+[issues-url]: https://github.com/jjlittle20/eeprom-programmer/issues

@@ -7,11 +7,14 @@ from pySerialTransfer import pySerialTransfer as txfer
   
 eel.init("frontend")  
   
+settings = open('./config/settings.json')
 
-arduino = serial.Serial(port='COM11', baudrate=115200, timeout=.1)
+settingsData =json.load(settings)
+print(settingsData)
+arduino = serial.Serial(port="COM"+str(settingsData["com"]), baudrate=115200, timeout=.1)
 
 
-file = open("./test files/test.bin","rb")
+file = open(settingsData["lastBinFile"],"rb")
 
 hexData = file.read().hex()
 

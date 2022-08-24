@@ -18,7 +18,7 @@ hexData = file.read().hex()
 file.close()
 
 hexStringList =list(map(''.join, zip(*[iter(hexData)]*2)))
-print(hexStringList)
+
 decList = []
 writeLength=[]
 writeLength.append(int(len(hexStringList)))
@@ -66,16 +66,16 @@ def getCommand(command):
                 
     elif(command == "erase" or command =="e"):
         arduino.write(bytes("C-ERASE", 'utf-8'))
-        print("command")
+        
         while arduino.inWaiting() == 0:
                 time.sleep(0.01)
         returned_data = arduino.readline()
-        print(returned_data)
+      
         isErasing = True
         while isErasing ==True:
             time.sleep(0.01)
             returned_data = arduino.readline().decode('utf-8')
-            print(returned_data)
+           
             if(returned_data == "ERASE-DONE"):
                 isErasing = False
                 returned_values = {"message":"Erase completed sucessfully"}
@@ -95,7 +95,7 @@ def getCommand(command):
         while isReading == True:
             time.sleep(0.01)
             returned_data = arduino.readline().decode('utf-8')
-            print(returned_data)
+           
            
             if(failedReads > 5):
                 

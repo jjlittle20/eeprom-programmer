@@ -84,7 +84,8 @@ I found that Ben Eater's EEPROM programmer project wasn't exactly what I needed 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- GETTING STARTED -->
-
+ <img src="images/pcb.png" alt="pcb" width="200" height="200">
+ <img src="images/28c16 schematic.png" alt="sch" width="200" height="200">
 ## Getting Started
 
 To convert files from assembly to a .bin file for your cpu you will need a package such as sjasmplus which is for z80 archetecture. You will also need an arduino - this will work on an arduino nano with the smaller 168 ic. I am using and arduino UNO for my project. The Arduino sketch is currently hardcoded for 2048 memory addresses. The hardware is setup for a 28c16 EEPROM.
